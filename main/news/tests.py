@@ -3,18 +3,17 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from json import JSONEncoder
 
-from aboutUs.models import MainAboutUs, AboutUsFiles
+from news.models import News, NewsFiles
 
 
 class TestViews(APITestCase):
     def setUp(self) -> None:
         self.list_url = reverse('list')
-        self.data = b'{"message":"List of the main information\'s",' \
-                    b'"data":[{"id":5,"title":"main title","description":"description","file":[]}],"status":200}'
-        MainAboutUs.objects.create(title="main title",
-                                   description="description")
-        MainAboutUs.objects.create(title="main title2",
-                                   description="description2")
+        self.data = b'{"message":"List of the main information\'s","data":[],"status":200}'
+        News.objects.create(title="main title",
+                            description="description")
+        News.objects.create(title="main title2",
+                            description="description2")
 
         # self.file = AboutUsFiles.objects.create(title="file title", about_us=self.main.id)
         self.detail_url = reverse('detail', kwargs={"pk": 1})
