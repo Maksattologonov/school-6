@@ -13,11 +13,13 @@ import os
 
 from pathlib import Path
 from decouple import config
+import django_on_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
+django_on_heroku.settings(locals())
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-6+w*l%*d!$j10wwnn*q_mtr&4$vi*o)jm%i-!jsqze=abk5ob%'
