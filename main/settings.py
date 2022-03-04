@@ -24,7 +24,6 @@ django_heroku.settings(locals())
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-6+w*l%*d!$j10wwnn*q_mtr&4$vi*o)jm%i-!jsqze=abk5ob%'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -53,8 +52,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    "django.middleware.security.SecurityMiddleware",
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     "corsheaders.middleware.CorsMiddleware",
