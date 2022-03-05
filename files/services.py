@@ -18,7 +18,7 @@ class FilesService:
     @classmethod
     def filter_gallery(cls, **filters) -> List[Gallery]:
         try:
-            return cls.model.objects.filter(**filters)
+            return cls.model.objects.filter(**filters).order_by('-id')
         except cls.model.DoesNotExist:
             raise ObjectNotFoundException('Images not found')
 
@@ -39,7 +39,7 @@ class FilesService:
     @classmethod
     def filter_schedule(cls, **filters) -> List[Schedule]:
         try:
-            return cls.model_schedule.objects.filter(**filters)
+            return cls.model_schedule.objects.filter(**filters).order_by('-id')
         except cls.model_schedule.DoesNotExist:
             raise ObjectNotFoundException('Schedule not found')
 

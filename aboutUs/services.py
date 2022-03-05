@@ -17,7 +17,7 @@ class AboutUsService:
     @classmethod
     def filter(cls, **filters) -> List[MainAboutUs]:
         try:
-            return cls.model.objects.filter(**filters)
+            return cls.model.objects.filter(**filters).order_by('-id')
         except cls.model.DoesNotExist:
             raise ObjectNotFoundException('Information not found')
 
@@ -31,7 +31,7 @@ class AboutUsService:
     @classmethod
     def filter_files(cls, **filters):
         try:
-            return AboutUsFiles.objects.filter(**filters)
+            return AboutUsFiles.objects.filter(**filters).order_by('-id')
         except Exception as ex:
             raise ObjectNotFoundException('Files not found')
 
@@ -49,7 +49,7 @@ class TeachersService:
     @classmethod
     def filter(cls, **filters) -> List[Teachers]:
         try:
-            return cls.model.objects.filter(**filters)
+            return cls.model.objects.filter(**filters).order_by('-id')
         except cls.model.DoesNotExist:
             raise ObjectNotFoundException('Teachers not found')
 
@@ -67,6 +67,6 @@ class GloryBoardService:
     @classmethod
     def filter(cls, **filters) -> List[GloryBoard]:
         try:
-            return cls.model.objects.filter(**filters)
+            return cls.model.objects.filter(**filters).order_by('-id')
         except cls.model.DoesNotExist:
             raise ObjectNotFoundException('GloryBoard not found')

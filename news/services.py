@@ -34,6 +34,6 @@ class NotificationService:
     @classmethod
     def filter(cls, **filters) -> List[Notification]:
         try:
-            return cls.model.objects.filter(**filters)
+            return cls.model.objects.filter(**filters).order_by('-id')
         except cls.model.DoesNotExist:
             raise ObjectNotFoundException('Notifications not found')
