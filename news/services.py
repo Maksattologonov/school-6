@@ -16,7 +16,7 @@ class NewsService:
     @classmethod
     def filter(cls, **filters) -> List[News]:
         try:
-            return cls.model.objects.filter(**filters)
+            return cls.model.objects.filter(**filters).order_by('created_at')
         except cls.model.DoesNotExist:
             raise ObjectNotFoundException('News not found')
 
