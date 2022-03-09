@@ -16,7 +16,7 @@ class GallerySerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super(GallerySerializer, self).to_representation(instance)
-        return {"Gallery": data}
+        return data
 
 
 class ScheduleSerializer(serializers.ModelSerializer):
@@ -32,10 +32,10 @@ class ScheduleSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super(ScheduleSerializer, self).to_representation(instance)
-        return {"Schedule": data}
+        return data
 
 
 class TitleSerializer(serializers.Serializer):
-    class_no = serializers.CharField(read_only=True)
     id = serializers.IntegerField(read_only=True)
-
+    title = serializers.CharField(read_only=True)
+    class_no = serializers.CharField(read_only=True)

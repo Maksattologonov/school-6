@@ -34,11 +34,10 @@ class GalleryAPIView(APIView):
 class GalleryTitleAPIView(APIView):
     def get(self, *args, **kwargs):
         queryset = FilesService.get_gallery_titles()
-        print(queryset)
         serializer = TitleSerializer(queryset, many=True)
         return Response(data={
             'message': "Gallery titles",
-            'gallery title': serializer.data,
+            'data': serializer.data,
             'status': status.HTTP_200_OK
         }, status=status.HTTP_200_OK)
 
