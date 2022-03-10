@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from files.models import Gallery, GalleryFiles, Schedule, ScheduleFiles
+from files.models import Gallery, GalleryFiles, Schedule
 
 
 class GallerySerializer(serializers.ModelSerializer):
@@ -20,15 +20,11 @@ class GallerySerializer(serializers.ModelSerializer):
 
 
 class ScheduleSerializer(serializers.ModelSerializer):
-    file = serializers.SerializerMethodField()
 
     class Meta:
         model = Schedule
         fields = ('id', 'class_no', 'file')
         depth = 2
-
-    def get_file(self, instance):
-        return ScheduleFiles.objects.filter(schedule_id=instance).values('id', 'schedule_id', 'file')
 
     def to_representation(self, instance):
         data = super(ScheduleSerializer, self).to_representation(instance)

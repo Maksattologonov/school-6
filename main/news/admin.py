@@ -1,5 +1,5 @@
 from django.contrib import admin
-from news.models import News, NewsFiles, Notification
+from news.models import News, NewsFiles, Notification, ForWhom
 
 
 class NewsFileAdmin(admin.TabularInline):
@@ -22,8 +22,14 @@ class MainAdmin(admin.ModelAdmin):
     file_count.short_description = "Файлдардын саны"
 
 
+class NotificationForWhom(admin.TabularInline):
+    model = ForWhom
+    extra = 1
+
+
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'author', 'for_whom', 'created_at')
+    list_display = ('title', 'description', 'author', 'created_at')
     list_filter = ('created_at',)
     search_fields = ('title', 'created_at', 'author')
+    inlines = [NotificationForWhom]

@@ -2,7 +2,7 @@ from pathlib import Path
 import socket
 
 from rest_framework import serializers
-from news.models import News, NewsFiles, Notification
+from news.models import News, NewsFiles, Notification, ForWhom
 
 
 class NewsListSerializer(serializers.ModelSerializer):
@@ -22,6 +22,14 @@ class NewsListSerializer(serializers.ModelSerializer):
 
 
 class NotificationSerializer(serializers.ModelSerializer):
+    whom = serializers.SerializerMethodField()
+
     class Meta:
         model = Notification
-        fields = ('id', 'title', 'description', 'created_at', 'for_whom')
+        fields = ('id', 'title', 'description', 'created_at', 'whom')
+        depth = 2
+
+    def get_whom(self, instance):
+        return ForWhom.objects.filter(not_id=instance.id).values('human')
+
+
