@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from files.models import Gallery, GalleryFiles, Schedule
+from files.models import Gallery, GalleryFiles, Schedule, Slider
 
 
 class GallerySerializer(serializers.ModelSerializer):
@@ -26,12 +26,14 @@ class ScheduleSerializer(serializers.ModelSerializer):
         fields = ('id', 'class_no', 'file')
         depth = 2
 
-    def to_representation(self, instance):
-        data = super(ScheduleSerializer, self).to_representation(instance)
-        return data
-
 
 class TitleSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     title = serializers.CharField(read_only=True)
     class_no = serializers.CharField(read_only=True)
+
+
+class SlideSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slider
+        fields = ('id', 'title', 'sub_title', 'file')

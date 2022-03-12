@@ -30,21 +30,19 @@ class NewsFiles(models.Model):
 
 
 class Notification(models.Model):
+    SELECT_FOR_WHOM = [
+        ('M', 'Мугалим'), ('O', 'Окуучу'), ('P', 'Ата-эне')
+    ]
+    TEACHER = 'Мугалим'
+    STUDENT = 'Окуучу'
+    PARENT = 'Ата-эне'
     title = models.CharField(max_length=255, verbose_name=_("Файл жөнүндө маалымат"))
     description = models.TextField(verbose_name=_("Жаңылыктын маалыматы"))
     created_at = models.DateField(verbose_name=_('Жазылган дата'), editable=False, default=timezone.now)
     author = models.CharField(verbose_name=_("Автор"), max_length=255)
+    human = models.CharField(choices=SELECT_FOR_WHOM, default=STUDENT, max_length=50, verbose_name=_("Ким үчүн"))
 
     class Meta:
         verbose_name = _('Кулактандыруу')
         verbose_name_plural = _('Кулактандыруулар')
         db_table = 'notifications'
-
-
-class ForWhom(models.Model):
-    human = models.CharField(max_length=50, verbose_name=_("Ким үчүн"))
-    not_id = models.OneToOneField(Notification, on_delete=models.CASCADE, verbose_name=_("Кимдер үчүн"))
-
-    class Meta:
-        verbose_name = _('Кулактандырууну алуучулар')
-        db_table = 'human'

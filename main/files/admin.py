@@ -1,5 +1,5 @@
 from django.contrib import admin
-from files.models import Schedule, Gallery, GalleryFiles
+from files.models import Schedule, Gallery, GalleryFiles, Slider
 
 
 @admin.register(Schedule)
@@ -31,3 +31,13 @@ class GalleryAdmin(admin.ModelAdmin):
         return GalleryFiles.objects.filter(gallery_id__title=obj).count()
 
     file_count.short_description = "Сүрөттөрдүн саны"
+
+
+@admin.register(Slider)
+class SliderAdmin(admin.ModelAdmin):
+    list_display = ('title', 'sub_title', 'image_tag')
+    search_fields = ('title',)
+    list_filter = ['title']
+
+    class Meta:
+        model = Slider

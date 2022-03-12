@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-05 03:57+0600\n"
+"POT-Creation-Date: 2022-03-12 11:56+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,119 +20,172 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: aboutUs/models.py:6
+#: aboutUs/models.py:7
 msgid "Мектеп жөнүндө маалыматтын темасы"
 msgstr "Заголовок для информации о школе"
 
-#: aboutUs/models.py:7
+#: aboutUs/models.py:8
 msgid "Мектеп жөнүндө маалымат"
 msgstr "Информация о школе"
 
-#: aboutUs/models.py:11
+#: aboutUs/models.py:12
 msgid "Башкы баракча маалыматы"
 msgstr "Информация для главной страницы"
 
-#: aboutUs/models.py:12
+#: aboutUs/models.py:13
 msgid "Башкы баракча маалыматтары"
 msgstr "Информации для главной страницы"
 
-#: aboutUs/models.py:20 news/models.py:23 news/models.py:41
+#: aboutUs/models.py:21 news/models.py:23 news/models.py:39
 msgid "Файл жөнүндө маалымат"
 msgstr "Информация о файле"
 
-#: aboutUs/models.py:21 files/models.py:19 news/models.py:24
+#: aboutUs/models.py:22 aboutUs/models.py:86 files/models.py:8
+#: news/models.py:24
 msgid "Файл жүктөө"
 msgstr "Загрузка файлов"
 
-#: aboutUs/models.py:25 news/models.py:27
+#: aboutUs/models.py:26 news/models.py:27
 msgid "Файл"
 msgstr "Файл"
 
-#: aboutUs/models.py:26 news/models.py:28
+#: aboutUs/models.py:27 news/models.py:28
 msgid "Файлдар"
 msgstr "Файлы"
 
-#: aboutUs/models.py:30 aboutUs/models.py:50
+#: aboutUs/models.py:31 aboutUs/models.py:54
 msgid "Аты-жөнү"
 msgstr "ФИО"
 
-#: aboutUs/models.py:31
+#: aboutUs/models.py:32
 msgid "Позициясы"
 msgstr "Позиция"
 
-#: aboutUs/models.py:32
+#: aboutUs/models.py:33
 msgid "Сабак"
 msgstr "Урок"
 
-#: aboutUs/models.py:33
+#: aboutUs/models.py:34
 msgid "График"
 msgstr "График"
 
-#: aboutUs/models.py:34
+#: aboutUs/models.py:35
 msgid "Жетишкендиктери"
 msgstr "ДостижениЯ"
 
-#: aboutUs/models.py:35
+#: aboutUs/models.py:36
 msgid "Байланышуу"
 msgstr "Связаться"
 
-#: aboutUs/models.py:36 aboutUs/models.py:52
+#: aboutUs/models.py:37 aboutUs/models.py:56
 msgid "Сүрөтүн жүктөө"
 msgstr "Загрузка изображений"
 
-#: aboutUs/models.py:40
+#: aboutUs/models.py:44
 msgid "Мугалим"
 msgstr "Учитель"
 
-#: aboutUs/models.py:41
+#: aboutUs/models.py:45
 msgid "Мугалимдер"
 msgstr "Учителя"
 
-#: aboutUs/models.py:51
+#: aboutUs/models.py:55
 msgid "Классы"
 msgstr "Классы"
 
-#: aboutUs/models.py:57 aboutUs/models.py:62
+#: aboutUs/models.py:61 aboutUs/models.py:66
 msgid "Сыйлануучу"
 msgstr "Награждаемый"
 
-#: aboutUs/models.py:63
+#: aboutUs/models.py:67
 msgid "Ардак тактасы"
 msgstr "Доска почета"
 
-#: files/models.py:6
+#: aboutUs/models.py:71 aboutUs/models.py:85
+msgid "Аталышы"
+msgstr "Название"
+
+#: aboutUs/models.py:72
+msgid "Текст"
+msgstr "Текст"
+
+#: aboutUs/models.py:79
+#, fuzzy
+#| msgid "Мектеп жөнүндө маалымат"
+msgid "Мектепке кабыл алуу"
+msgstr "Информация о школе"
+
+#: aboutUs/models.py:80
+#, fuzzy
+#| msgid "Башкы баракча маалыматтары"
+msgid "Мектепке кабыл алуу маалыматтары"
+msgstr "Информации для главной страницы"
+
+#: aboutUs/models.py:93
+#, fuzzy
+#| msgid "Мектеп жөнүндө маалыматтын темасы"
+msgid "Мектепке кабыл алуу файлы"
+msgstr "Заголовок для информации о школе"
+
+#: aboutUs/models.py:94
+#, fuzzy
+#| msgid "Мектеп жөнүндө маалыматтын темасы"
+msgid "Мектепке кабыл алуу файлдары"
+msgstr "Заголовок для информации о школе"
+
+#: files/models.py:7
 msgid "Класстын расписаниеси"
 msgstr "Расписание класса"
 
-#: files/models.py:10 files/models.py:11
+#: files/models.py:12 files/models.py:13
 msgid "Расписание"
 msgstr "Расписание"
 
-#: files/models.py:26
+#: files/models.py:20
 msgid "Сүрөттүн тематикасы"
 msgstr "Тематика для изображений"
 
-#: files/models.py:30
+#: files/models.py:24
 msgid "Сүрөт"
 msgstr "Изображение"
 
-#: files/models.py:31
+#: files/models.py:25
 msgid "Галлерея"
 msgstr "Галлерея"
 
-#: files/models.py:39
+#: files/models.py:33 files/models.py:42
 msgid "Сүрөт жүктөө"
 msgstr "Загрузка изображения"
+
+#: files/models.py:40
+#, fuzzy
+#| msgid "Сүрөттүн тематикасы"
+msgid "Сүрөттүн темасы"
+msgstr "Тематика для изображений"
+
+#: files/models.py:41
+#, fuzzy
+#| msgid "Сүрөттүн тематикасы"
+msgid "Сүрөттүн подтемасы"
+msgstr "Тематика для изображений"
+
+#: files/models.py:51
+msgid "Слайдер үчүн сүрөттөр"
+msgstr "Изображении для слайдера"
+
+#: files/models.py:52
+msgid "Слайдерлер сүрөттөрү"
+msgstr "Изображение для слайдера"
 
 #: news/models.py:7
 msgid "Жаңылыктын темасы"
 msgstr "Заголовок новости"
 
-#: news/models.py:8 news/models.py:42
+#: news/models.py:8 news/models.py:40
 msgid "Жаңылыктын маалыматы"
 msgstr "Содержание новостей"
 
-#: news/models.py:9 news/models.py:43
+#: news/models.py:9 news/models.py:41
 msgid "Жазылган дата"
 msgstr "Дата создания"
 
@@ -148,19 +201,21 @@ msgstr "Новости"
 msgid "Жаңылыктар үчүн файл жүктөө"
 msgstr "Загрузка файла для новостей"
 
-#: news/models.py:44
+#: news/models.py:42
 msgid "Автор"
 msgstr "Автор"
 
-#: news/models.py:49
-msgid "Кимдер үчүн"
+#: news/models.py:43
+#, fuzzy
+#| msgid "Кимдер үчүн"
+msgid "Ким үчүн"
 msgstr "Для кого"
 
-#: news/models.py:53
+#: news/models.py:46
 msgid "Кулактандыруу"
 msgstr "Объявление"
 
-#: news/models.py:54
+#: news/models.py:47
 msgid "Кулактандыруулар"
 msgstr "Объявлении"
 

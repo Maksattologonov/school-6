@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import display
 
-from .models import MainAboutUs, AboutUsFiles, Teachers, GloryBoard
+from .models import MainAboutUs, AboutUsFiles, Teachers, GloryBoard, SchoolAdmissionFiles, SchoolAdmission
 
 
 class AboutUsFileAdmin(admin.TabularInline):
@@ -25,7 +25,7 @@ class MainAdmin(admin.ModelAdmin):
 
 @admin.register(Teachers)
 class TeachersAdmin(admin.ModelAdmin):
-    list_display = ('name', 'lesson', 'position', 'contacts')
+    list_display = ('name', 'lesson', 'position', 'contacts', 'image_tag')
     search_fields = ('name', 'lesson', 'position')
 
 
@@ -35,3 +35,22 @@ class TeachersAdmin(admin.ModelAdmin):
     search_fields = ('name', 'class_no',)
 
 
+class SchoolAdmissionFilesAdmin(admin.TabularInline):
+    model = SchoolAdmissionFiles
+    extra = 1
+
+
+@admin.register(SchoolAdmission)
+class MainAdmin(admin.ModelAdmin):
+    list_display = ('title', 'description')
+    search_fields = ('title',)
+    inlines = [SchoolAdmissionFilesAdmin]
+
+    class Meta:
+        model = SchoolAdmission
+
+    def has_add_permission(self, request):
+        if self.model.objects.filter().count() >= 1:
+            return False
+        else:
+            return True
