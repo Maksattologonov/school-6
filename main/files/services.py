@@ -1,7 +1,7 @@
 from typing import List
 
 from common.exceptions import ObjectNotFoundException
-from files.models import Gallery, Schedule, Slider
+from files.models import Gallery, Schedule, Slider, SchoolDocuments
 
 
 class FilesService:
@@ -67,3 +67,21 @@ class SliderService:
             return cls.model.objects.filter(**filters).order_by('-id')
         except cls.model.DoesNotExist:
             raise ObjectNotFoundException('Slide not found')
+
+
+class SchoolDocumentsService:
+    model = SchoolDocuments
+
+    @classmethod
+    def get(cls, **filters) -> Gallery:
+        try:
+            return cls.model.objects.get(**filters)
+        except cls.model.DoesNotExist:
+            raise ObjectNotFoundException('Document not found')
+
+    @classmethod
+    def filter(cls, **filters) -> List[Gallery]:
+        try:
+            return cls.model.objects.filter(**filters).order_by('-id')
+        except cls.model.DoesNotExist:
+            raise ObjectNotFoundException('Documents not found')

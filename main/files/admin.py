@@ -1,5 +1,5 @@
 from django.contrib import admin
-from files.models import Schedule, Gallery, GalleryFiles, Slider
+from files.models import Schedule, Gallery, GalleryFiles, Slider, SchoolDocumentsFiles, SchoolDocuments
 
 
 @admin.register(Schedule)
@@ -41,3 +41,19 @@ class SliderAdmin(admin.ModelAdmin):
 
     class Meta:
         model = Slider
+
+
+class SchoolDocumentsFilesAdmin(admin.TabularInline):
+    model = SchoolDocumentsFiles
+    extra = 1
+
+
+@admin.register(SchoolDocuments)
+class SchoolDocumentsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    search_fields = ('title', 'created_at')
+    list_filter = ['title', 'created_at']
+    inlines = [SchoolDocumentsFilesAdmin]
+
+    class Meta:
+        model = SchoolDocuments

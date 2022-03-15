@@ -29,7 +29,7 @@ class Gallery(models.Model):
 
 
 class GalleryFiles(models.Model):
-    gallery_id = models.ForeignKey(Gallery, models.SET_NULL, related_name="gallery_files", blank=True, null=True,)
+    gallery_id = models.ForeignKey(Gallery, models.SET_NULL, related_name="gallery_files", blank=True, null=True, )
     file = models.ImageField(upload_to='files/%Y/%m', verbose_name=_("Сүрөт жүктөө"), null=True)
 
     class Meta:
@@ -53,3 +53,26 @@ class Slider(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class SchoolDocuments(models.Model):
+    title = models.CharField(max_length=255, verbose_name=_("Файлдын аты"))
+    created_at = models.DateField(auto_now=True, verbose_name=_('Жүктөлгөн датасы'))
+
+    class Meta:
+        db_table = 'school_docs'
+        verbose_name = _("Мектеп документи")
+        verbose_name_plural = _("Мектеп документтери")
+
+    def __str__(self):
+        return self.title
+
+
+class SchoolDocumentsFiles(models.Model):
+    doc_id = models.ForeignKey(SchoolDocuments, on_delete=models.CASCADE, verbose_name=_("Файл"))
+    file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Файл жүктөө"))
+
+    class Meta:
+        db_table = 'school_docs_files'
+        verbose_name = _("Мектеп документи")
+        verbose_name_plural = _("Мектеп документтери")

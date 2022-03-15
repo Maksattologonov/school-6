@@ -2,8 +2,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from common.utils import get_instance_slice
-from files.serializers import GallerySerializer, ScheduleSerializer, TitleSerializer, SlideSerializer
-from files.services import FilesService, SliderService
+from files.serializers import GallerySerializer, ScheduleSerializer, TitleSerializer, SlideSerializer, \
+    SchoolDocumentsSerializer
+from files.services import FilesService, SliderService, SchoolDocumentsService
 
 
 class GalleryListAPIView(APIView):
@@ -82,6 +83,17 @@ class SliderAPIView(APIView):
     def get(self, request, *args, **kwargs):
         queryset = SliderService.filter()
         serializer = SlideSerializer(queryset, many=True)
+        return Response(data={
+            'message': "List of the sliders",
+            'data': serializer.data,
+            'status': status.HTTP_200_OK
+        }, status=status.HTTP_200_OK)
+
+
+class SchoolDocumentsAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        queryset = SchoolDocumentsService.filter()
+        serializer = SchoolDocumentsSerializer(queryset, many=True)
         return Response(data={
             'message': "List of the sliders",
             'data': serializer.data,

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from files.models import Gallery, GalleryFiles, Schedule, Slider
+from files.models import Gallery, GalleryFiles, Schedule, Slider, SchoolDocumentsFiles, SchoolDocuments
 
 
 class GallerySerializer(serializers.ModelSerializer):
@@ -37,3 +37,19 @@ class SlideSerializer(serializers.ModelSerializer):
     class Meta:
         model = Slider
         fields = ('id', 'title', 'sub_title', 'file')
+
+
+class SchoolDocumentsSerializer(serializers.ModelSerializer):
+    file = serializers.SerializerMethodField()
+
+    class Meta:
+        model = SchoolDocuments
+        fields = ('id', 'title', 'created_at', 'file')
+        depth = 2
+
+    def get_file(self, instance):
+        return SchoolDocumentsFiles.objects.filter(doc_id=instance).values('id', 'doc_id', 'file')
+
+    def to_representation(self, instance):
+        data = super(SchoolDocumentsSerializer, self).to_representation(instance)
+        return data
