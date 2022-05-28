@@ -1,3 +1,4 @@
+import decouple
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -32,4 +33,5 @@ urlpatterns = [
 urlpatterns.extend(i18n_patterns(*i18n_urls, prefix_default_language=False))
 urlpatterns.extend(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
 
-admin.site.site_header = "Школа №6"
+admin.site.site_header = decouple.config("ADMIN_TITLE")
+admin.site.site_url = decouple.config("ADMIN_LINK")

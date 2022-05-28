@@ -9,10 +9,7 @@ from news.services import NewsService, NotificationService
 
 class NewsListAPIView(APIView):
     def get(self, request, *args, **kwargs):
-        page = int(request.query_params.get('page', '0'))
-        count = int(request.query_params.get('count', '9'))
-        instance_slice = get_instance_slice(page=page, count=count)
-        queryset = NewsService.filter()[instance_slice]
+        queryset = NewsService.filter()
         serializer = NewsListSerializer(queryset, many=True)
         return Response(data={
             'message': "List of the news",
