@@ -4,8 +4,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from aboutUs.models import GloryBoard
-from aboutUs.serializers import MainAboutUsSerializer, FileSerializer, TeachersSerializer, GloryBoardSerializer
-from aboutUs.services import AboutUsService, TeachersService, GloryBoardService
+from aboutUs.serializers import MainAboutUsSerializer, FileSerializer, TeachersSerializer, GloryBoardSerializer, \
+    SchoolAdmissionSerializer
+from aboutUs.services import AboutUsService, TeachersService, GloryBoardService, SchoolAdmissionService
 from common.utils import get_instance_slice
 
 
@@ -53,6 +54,17 @@ class GloryBoardAPIView(APIView):
         serializer = GloryBoardSerializer(queryset, many=True)
         return Response(data={
             'message': "Glory Board information",
+            'data': serializer.data,
+            'status': status.HTTP_200_OK
+        }, status=status.HTTP_200_OK)
+
+
+class SchoolAdmissionAPIView(APIView):
+    def get(self, *args, **kwargs):
+        queryset = SchoolAdmissionService.get()
+        serializer = SchoolAdmissionSerializer(queryset, many=False)
+        return Response(data={
+            'message': "School admission information",
             'data': serializer.data,
             'status': status.HTTP_200_OK
         }, status=status.HTTP_200_OK)

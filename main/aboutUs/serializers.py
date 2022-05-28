@@ -2,7 +2,7 @@ from abc import ABC
 
 from rest_framework import serializers
 
-from aboutUs.models import MainAboutUs, AboutUsFiles, Teachers, GloryBoard
+from aboutUs.models import MainAboutUs, AboutUsFiles, Teachers, GloryBoard, SchoolAdmission, SchoolAdmissionFiles
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -34,3 +34,15 @@ class GloryBoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = GloryBoard
         fields = '__all__'
+
+
+class SchoolAdmissionSerializer(serializers.ModelSerializer):
+    file = serializers.SerializerMethodField()
+
+    class Meta:
+        model = SchoolAdmission
+        fields = ('id', 'title', 'description', 'file')
+        depth = 2
+
+    def get_file(self, instance):
+        return SchoolAdmissionFiles.objects.filter(school_admin_id=instance).values('id', 'title', 'file')

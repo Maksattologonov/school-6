@@ -1,3 +1,6 @@
+from pathlib import Path
+import socket
+
 from rest_framework import serializers
 from news.models import News, NewsFiles, Notification
 
@@ -15,10 +18,10 @@ class NewsListSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super(NewsListSerializer, self).to_representation(instance)
-        return {"News": data}
+        return data
 
 
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
-        fields = ('id', 'title', 'description', 'created_at', 'for_whom')
+        fields = ('id', 'title', 'description', 'created_at', 'human')

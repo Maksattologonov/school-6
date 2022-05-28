@@ -24,6 +24,6 @@ class MainAdmin(admin.ModelAdmin):
 
 @admin.register(Notification)
 class NotificationAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'author', 'for_whom', 'created_at')
+    list_display = ('title', 'description', 'author', 'created_at', 'human')
     list_filter = ('created_at',)
     search_fields = ('title', 'created_at', 'author')

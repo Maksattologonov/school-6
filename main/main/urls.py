@@ -5,6 +5,7 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
+from decouple import config
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -28,8 +29,10 @@ urlpatterns = [
     path('api/about_us/', include('aboutUs.urls')),
     path('api/news/',  include('news.urls')),
     path('api/files/',  include('files.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
+                                                                           document_root=settings.STATIC_ROOT)
 urlpatterns.extend(i18n_patterns(*i18n_urls, prefix_default_language=False))
 urlpatterns.extend(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
 
-admin.site.site_header = "Школа №6"
+admin.site.site_header = config("ADMIN_TITLE")
+admin.site.site_url = config("ADMIN_LINK")

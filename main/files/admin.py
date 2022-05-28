@@ -1,26 +1,15 @@
 from django.contrib import admin
-
-from files.models import Schedule, ScheduleFiles, Gallery, GalleryFiles
-
-
-class ScheduleFileAdmin(admin.TabularInline):
-    model = ScheduleFiles
-    extra = 1
+from files.models import Schedule, Gallery, GalleryFiles, Slider, SchoolDocumentsFiles, SchoolDocuments, Accreditation
 
 
 @admin.register(Schedule)
 class ScheduleAdmin(admin.ModelAdmin):
-    list_display = ('class_no', 'file_count')
+    list_display = ('class_no', 'file')
     search_fields = ['class_no']
     list_filter = ['class_no']
-    inlines = [ScheduleFileAdmin]
 
     class Meta:
         model = Schedule
-
-    def file_count(self, obj):
-        return ScheduleFiles.objects.filter(schedule_id__class_no=obj).count()
-    file_count.short_description = "Файлдардын саны"
 
 
 class GalleryFileAdmin(admin.TabularInline):
@@ -40,4 +29,37 @@ class GalleryAdmin(admin.ModelAdmin):
 
     def file_count(self, obj):
         return GalleryFiles.objects.filter(gallery_id__title=obj).count()
+
     file_count.short_description = "Сүрөттөрдүн саны"
+
+
+@admin.register(Slider)
+class SliderAdmin(admin.ModelAdmin):
+    list_display = ('title', 'sub_title', 'image_tag')
+    search_fields = ('title',)
+    list_filter = ['title']
+
+    class Meta:
+        model = Slider
+
+
+class SchoolDocumentsFilesAdmin(admin.TabularInline):
+    model = SchoolDocumentsFiles
+    extra = 1
+
+
+@admin.register(SchoolDocuments)
+class SchoolDocumentsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    search_fields = ('title', 'created_at')
+    list_filter = ['title', 'created_at']
+    inlines = [SchoolDocumentsFilesAdmin]
+
+    class Meta:
+        model = SchoolDocuments
+
+
+@admin.register(Accreditation)
+class TeachersAdmin(admin.ModelAdmin):
+    list_display = ('title', 'file')
+    search_fields = ('title',)

@@ -31,23 +31,16 @@ class NewsFiles(models.Model):
 
 class Notification(models.Model):
     SELECT_FOR_WHOM = [
-        ('Мугалимдер үчүн', 'Мугалимдер үчүн'),
-         ('Окуучулар үчүн', 'Окуучулар үчүн'),
-          ('Ата-энелер үчүн', 'Ата-энелер үчүн')
+        ('M', 'Мугалим'), ('O', 'Окуучу'), ('P', 'Ата-эне')
     ]
-    TEACHERS = 'Мугалимдер үчүн'
-    STUDENTS = 'Окуучулар үчүн'
-    PARENTS = 'Ата-энелер үчүн'
+    TEACHER = 'Мугалим'
+    STUDENT = 'Окуучу'
+    PARENT = 'Ата-эне'
     title = models.CharField(max_length=255, verbose_name=_("Файл жөнүндө маалымат"))
     description = models.TextField(verbose_name=_("Жаңылыктын маалыматы"))
     created_at = models.DateField(verbose_name=_('Жазылган дата'), editable=False, default=timezone.now)
     author = models.CharField(verbose_name=_("Автор"), max_length=255)
-    for_whom = models.CharField(
-        max_length=20,
-        choices=SELECT_FOR_WHOM,
-        default=STUDENTS,
-        verbose_name=_("Кимдер үчүн")
-    )
+    human = models.CharField(choices=SELECT_FOR_WHOM, default=STUDENT, max_length=50, verbose_name=_("Ким үчүн"))
 
     class Meta:
         verbose_name = _('Кулактандыруу')
