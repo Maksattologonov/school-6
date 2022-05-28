@@ -9,10 +9,7 @@ from files.services import FilesService, SliderService, SchoolDocumentsService, 
 
 class GalleryListAPIView(APIView):
     def get(self, request, *args, **kwargs):
-        page = int(request.query_params.get('page', '0'))
-        count = int(request.query_params.get('count', '9'))
-        instance_slice = get_instance_slice(page=page, count=count)
-        queryset = FilesService.filter_gallery()[instance_slice]
+        queryset = FilesService.filter_gallery()
         serializer = GallerySerializer(queryset, many=True)
         return Response(data={
             'message': "List of the images",
@@ -45,10 +42,7 @@ class GalleryTitleAPIView(APIView):
 
 class ScheduleListAPIView(APIView):
     def get(self, request, *args, **kwargs):
-        page = int(request.query_params.get('page', '0'))
-        count = int(request.query_params.get('count', '9'))
-        instance_slice = get_instance_slice(page=page, count=count)
-        queryset = FilesService.filter_schedule()[instance_slice]
+        queryset = FilesService.filter_schedule()
         serializer = ScheduleSerializer(queryset, many=True)
         return Response(data={
             'message': "List of the Schedule",

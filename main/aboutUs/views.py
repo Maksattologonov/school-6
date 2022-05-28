@@ -13,10 +13,7 @@ from common.utils import get_instance_slice
 class MainAboutUsListAPIView(APIView):
 
     def get(self, request, *args, **kwargs):
-        page = int(request.query_params.get('page', '0'))
-        count = int(request.query_params.get('count', '9'))
-        instance_slice = get_instance_slice(page=page, count=count)
-        queryset = AboutUsService.filter()[instance_slice]
+        queryset = AboutUsService.filter()
         serializer = MainAboutUsSerializer(queryset, many=True)
         return Response(data={
             'message': "List of the main information's",
