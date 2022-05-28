@@ -79,7 +79,13 @@ class SchoolDocumentsFiles(models.Model):
 
 
 class Accreditation(models.Model):
+    SELECT_TYPE = [
+        ('Институционалдык', 'Институционалдык'), ('Программалык', 'Программалык')
+    ]
+    Institutional = 'Институционалдык'
+    Software = 'Программалык'
     title = models.CharField(max_length=255, verbose_name=_("Аккредитация документтери"))
+    type = models.CharField(verbose_name=_("Түрү"), choices=SELECT_TYPE, max_length=17, default=Institutional)
     file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Файл жүктөө"), null=True)
 
     class Meta:

@@ -61,5 +61,5 @@ class SchoolDocumentsAdmin(admin.ModelAdmin):
 
 @admin.register(Accreditation)
 class TeachersAdmin(admin.ModelAdmin):
-    list_display = ('title', 'file')
-    search_fields = ('title',)
+    list_display = ('title', 'type', 'file')
+    search_fields = ('title', 'type')

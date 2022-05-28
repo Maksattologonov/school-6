@@ -58,4 +58,4 @@ class SchoolDocumentsSerializer(serializers.ModelSerializer):
 class AccreditationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Accreditation
-        fields = ('id', 'title', 'file')
+        fields = ('id', 'title', 'type', 'file')
