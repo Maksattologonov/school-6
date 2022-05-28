@@ -76,3 +76,16 @@ class SchoolDocumentsFiles(models.Model):
         db_table = 'school_docs_files'
         verbose_name = _("Мектеп документи")
         verbose_name_plural = _("Мектеп документтери")
+
+
+class Accreditation(models.Model):
+    title = models.CharField(max_length=255, verbose_name=_("Аккредитация документтери"))
+    file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Файл жүктөө"), null=True)
+
+    class Meta:
+        db_table = 'accreditation'
+        verbose_name = _('Аккредитация')
+        verbose_name_plural = _('Аккредитация')
+
+    def __str__(self):
+        return self.title

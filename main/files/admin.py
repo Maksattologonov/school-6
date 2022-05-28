@@ -1,5 +1,5 @@
 from django.contrib import admin
-from files.models import Schedule, Gallery, GalleryFiles, Slider, SchoolDocumentsFiles, SchoolDocuments
+from files.models import Schedule, Gallery, GalleryFiles, Slider, SchoolDocumentsFiles, SchoolDocuments, Accreditation
 
 
 @admin.register(Schedule)
@@ -57,3 +57,9 @@ class SchoolDocumentsAdmin(admin.ModelAdmin):
 
     class Meta:
         model = SchoolDocuments
+
+
+@admin.register(Accreditation)
+class TeachersAdmin(admin.ModelAdmin):
+    list_display = ('title', 'file')
+    search_fields = ('title',)

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from files.models import Gallery, GalleryFiles, Schedule, Slider, SchoolDocumentsFiles, SchoolDocuments
+from files.models import Gallery, GalleryFiles, Schedule, Slider, SchoolDocumentsFiles, SchoolDocuments, Accreditation
 
 
 class GallerySerializer(serializers.ModelSerializer):
@@ -53,3 +53,9 @@ class SchoolDocumentsSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super(SchoolDocumentsSerializer, self).to_representation(instance)
         return data
+
+
+class AccreditationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Accreditation
+        fields = ('id', 'title', 'file')
