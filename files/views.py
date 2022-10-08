@@ -2,16 +2,13 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from common.utils import get_instance_slice
-from files.serializers import GallerySerializer, ScheduleSerializer, TitleSerializer
-from files.services import FilesService
+from files.serializers import GallerySerializer, ScheduleSerializer, TitleSerializer, AccreditationSerializer
+from files.services import FilesService, AccreditationService
 
 
 class GalleryListAPIView(APIView):
     def get(self, request, *args, **kwargs):
-        page = int(request.query_params.get('page', '0'))
-        count = int(request.query_params.get('count', '9'))
-        instance_slice = get_instance_slice(page=page, count=count)
-        queryset = FilesService.filter_gallery()[instance_slice]
+        queryset = FilesService.filter_gallery()
         serializer = GallerySerializer(queryset, many=True)
         return Response(data={
             'message': "List of the images",
@@ -45,10 +42,7 @@ class GalleryTitleAPIView(APIView):
 
 class ScheduleListAPIView(APIView):
     def get(self, request, *args, **kwargs):
-        page = int(request.query_params.get('page', '0'))
-        count = int(request.query_params.get('count', '9'))
-        instance_slice = get_instance_slice(page=page, count=count)
-        queryset = FilesService.filter_schedule()[instance_slice]
+        queryset = FilesService.filter_schedule()
         serializer = ScheduleSerializer(queryset, many=True)
         return Response(data={
             'message': "List of the Schedule",
@@ -75,5 +69,27 @@ class ScheduleTitleAPIView(APIView):
         return Response(data={
             'message': "Schedule titles",
             'class names': serializer.data,
+            'status': status.HTTP_200_OK
+        }, status=status.HTTP_200_OK)
+
+
+class AccreditationListAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        queryset = AccreditationService.get()
+        serializer = AccreditationSerializer(queryset, many=True)
+        return Response(data={
+            'message': "List of the files",
+            'data': serializer.data,
+            'status': status.HTTP_200_OK
+        }, status=status.HTTP_200_OK)
+
+
+class AccreditationAPIView(APIView):
+    def get(self, *args, **kwargs):
+        queryset = AccreditationService.filter(id=kwargs.get('pk'))
+        serializer = AccreditationSerializer(queryset, many=False)
+        return Response(data={
+            'message': "Accreditation file",
+            'data': serializer.data,
             'status': status.HTTP_200_OK
         }, status=status.HTTP_200_OK)

@@ -40,3 +40,16 @@ class GalleryFiles(models.Model):
 
     class Meta:
         db_table = 'gallery_files'
+
+
+class Accreditation(models.Model):
+    title = models.CharField(max_length=255, verbose_name=_("Аккредитация документтери"))
+    file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Файл жүктөө"), null=True)
+
+    class Meta:
+        db_table = 'accreditation'
+        verbose_name = _('Аккредитация')
+        verbose_name_plural = _('Аккредитация')
+
+    def __str__(self):
+        return self.title
