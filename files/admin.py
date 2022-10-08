@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from files.models import Schedule, ScheduleFiles, Gallery, GalleryFiles
+from files.models import Schedule, ScheduleFiles, Gallery, GalleryFiles, Accreditation
 
 
 class ScheduleFileAdmin(admin.TabularInline):
@@ -41,3 +41,9 @@ class GalleryAdmin(admin.ModelAdmin):
     def file_count(self, obj):
         return GalleryFiles.objects.filter(gallery_id__title=obj).count()
     file_count.short_description = "Сүрөттөрдүн саны"
+
+
+@admin.register(Accreditation)
+class TeachersAdmin(admin.ModelAdmin):
+    list_display = ('title', 'file')
+    search_fields = ('title',)

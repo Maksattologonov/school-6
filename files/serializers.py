@@ -39,3 +39,8 @@ class TitleSerializer(serializers.Serializer):
     class_no = serializers.CharField(read_only=True)
     id = serializers.IntegerField(read_only=True)
 
+
+class AccreditationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Gallery
+        fields = ('id', 'title', 'file')
