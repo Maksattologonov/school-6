@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from files.models import Gallery, GalleryFiles, Schedule, ScheduleFiles
+from files.models import Gallery, GalleryFiles, Schedule, ScheduleFiles, Accreditation, Slider
 
 
 class GallerySerializer(serializers.ModelSerializer):
@@ -42,5 +42,11 @@ class TitleSerializer(serializers.Serializer):
 
 class AccreditationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Gallery
+        model = Accreditation
+        fields = ('id', 'title', 'file')
+
+
+class SliderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Slider
         fields = ('id', 'title', 'file')

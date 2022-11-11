@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import (
     GalleryAPIView, GalleryTitleAPIView, GalleryListAPIView,
-    ScheduleListAPIView, ScheduleAPIView, ScheduleTitleAPIView, AccreditationAPIView, AccreditationListAPIView)
+    ScheduleListAPIView, ScheduleAPIView, ScheduleTitleAPIView, AccreditationAPIView, AccreditationListAPIView,
+    SliderListAPIView)
 
 urlpatterns = [
     path('gallery/', GalleryListAPIView.as_view(), name='List-gallery'),
@@ -12,4 +13,6 @@ urlpatterns = [
     path('schedule/title/', ScheduleTitleAPIView.as_view(), name='Title-schedule'),
     path('accredidation', AccreditationListAPIView.as_view(), name='Accreditation'),
     path('accredidation/<int:pk>/', AccreditationAPIView.as_view(), name='Lis-accreditation'),
+    path('slider', SliderListAPIView.as_view(), name='Slider'),
+
 ]

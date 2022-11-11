@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from files.models import Schedule, ScheduleFiles, Gallery, GalleryFiles, Accreditation
+from files.models import Schedule, ScheduleFiles, Gallery, GalleryFiles, Accreditation, Slider
 
 
 class ScheduleFileAdmin(admin.TabularInline):
@@ -44,6 +44,12 @@ class GalleryAdmin(admin.ModelAdmin):
 
 
 @admin.register(Accreditation)
-class TeachersAdmin(admin.ModelAdmin):
+class AccreditationAdmin(admin.ModelAdmin):
+    list_display = ('title', 'file')
+    search_fields = ('title',)
+
+
+@admin.register(Slider)
+class SlidersAdmin(admin.ModelAdmin):
     list_display = ('title', 'file')
     search_fields = ('title',)

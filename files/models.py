@@ -53,3 +53,16 @@ class Accreditation(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Slider(models.Model):
+    title = models.CharField(max_length=255, verbose_name=_("Слайдердин аталышы"))
+    file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Сүрөт жүктөө"), null=True)
+
+    class Meta:
+        db_table = 'slider'
+        verbose_name = _('Слайдер')
+        verbose_name_plural = _('Слайдер')
+
+    def __str__(self):
+        return self.title

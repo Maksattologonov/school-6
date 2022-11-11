@@ -2,8 +2,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from common.utils import get_instance_slice
-from files.serializers import GallerySerializer, ScheduleSerializer, TitleSerializer, AccreditationSerializer
-from files.services import FilesService, AccreditationService
+from files.serializers import GallerySerializer, ScheduleSerializer, TitleSerializer, AccreditationSerializer, \
+    SliderSerializer
+from files.services import FilesService, AccreditationService, SliderService
 
 
 class GalleryListAPIView(APIView):
@@ -75,7 +76,7 @@ class ScheduleTitleAPIView(APIView):
 
 class AccreditationListAPIView(APIView):
     def get(self, request, *args, **kwargs):
-        queryset = AccreditationService.get()
+        queryset = AccreditationService.filter()
         serializer = AccreditationSerializer(queryset, many=True)
         return Response(data={
             'message': "List of the files",
@@ -90,6 +91,17 @@ class AccreditationAPIView(APIView):
         serializer = AccreditationSerializer(queryset, many=False)
         return Response(data={
             'message': "Accreditation file",
+            'data': serializer.data,
+            'status': status.HTTP_200_OK
+        }, status=status.HTTP_200_OK)
+
+
+class SliderListAPIView(APIView):
+    def get(self, request, *args, **kwargs):
+        queryset = SliderService.filter()
+        serializer = SliderSerializer(queryset, many=True)
+        return Response(data={
+            'message': "List of the files",
             'data': serializer.data,
             'status': status.HTTP_200_OK
         }, status=status.HTTP_200_OK)
