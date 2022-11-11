@@ -57,7 +57,7 @@ class Accreditation(models.Model):
 
 class Slider(models.Model):
     title = models.CharField(max_length=255, verbose_name=_("Слайдердин аталышы"))
-    file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Файл жүктөө"), null=True)
+    file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Сүрөт жүктөө"), null=True)
 
     class Meta:
         db_table = 'slider'
