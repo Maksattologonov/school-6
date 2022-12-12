@@ -43,7 +43,11 @@ class GalleryFiles(models.Model):
 
 
 class Accreditation(models.Model):
+    types = [
+    ('1', 'Программалык'),
+    ('2', 'Институтционалдык')]
     title = models.CharField(max_length=255, verbose_name=_("Аккредитация документтери"))
+    file_type = models.CharField(choices=types, verbose_name=_("Документтин түрү"), max_length=30)
     file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Файл жүктөө"), null=True)
 
     class Meta:

@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-6+w*l%*d!$j10wwnn*q_mtr&4$vi*o)jm%i-!jsqze=abk5ob%'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-ALLOWED_HOSTS = ['134.122.74.82', 'talas-school.ml', 'http://talas-school.ml/']
+DEBUG = True
+ALLOWED_HOSTS = ['134.122.74.82', 'talas-school.ml', 'http://talas-school.ml/', '127.0.0.1']
 WHITENOISE_AUTOREFRESH = True
 # Application definition
 
@@ -46,7 +46,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://m97695.hostru07.fornex.host",
-    "http://talas-school.ml"
+    "http://talas-school.ml",
+    "http://127.0.0.1"
 ]
 
 MIDDLEWARE = [
@@ -119,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': [
-       'rest_framework.renderers.JSONRenderer',
-    ],
+    #'DEFAULT_RENDERER_CLASSES': [
+     #  'rest_framework.renderers.JSONRenderer',
+    #],
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
@@ -150,8 +151,7 @@ USE_L10N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = "/static/" # Django will search for /src/
-STATIC_ROOT = "/home/maksatt/sites/school-6/static/"
+STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
