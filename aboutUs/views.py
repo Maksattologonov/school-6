@@ -17,11 +17,7 @@ class MainAboutUsListAPIView(APIView):
         instance_slice = get_instance_slice(page=page, count=count)
         queryset = AboutUsService.filter()[instance_slice]
         serializer = MainAboutUsSerializer(queryset, many=True)
-        return Response(data={
-            'message': "List of the main information's",
-            'data': serializer.data,
-            'status': status.HTTP_200_OK
-        }, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
 
 class AboutUsAPIView(APIView):
@@ -29,30 +25,18 @@ class AboutUsAPIView(APIView):
     def get(self, *args, **kwargs):
         queryset = AboutUsService.get(id=kwargs.get('pk'))
         serializer = MainAboutUsSerializer(queryset, many=False)
-        return Response(data={
-            'message': "Main information",
-            'data': serializer.data,
-            'status': status.HTTP_200_OK
-        }, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
 
 class GetTeachersAPIView(APIView):
     def get(self, *args, **kwargs):
         queryset = TeachersService.filter()
         serializer = TeachersSerializer(queryset, many=True)
-        return Response(data={
-            'message': "Teachers information",
-            'data': serializer.data,
-            'status': status.HTTP_200_OK
-        }, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
 
 class GloryBoardAPIView(APIView):
     def get(self, *args, **kwargs):
         queryset = GloryBoardService.filter()
         serializer = GloryBoardSerializer(queryset, many=True)
-        return Response(data={
-            'message': "Glory Board information",
-            'data': serializer.data,
-            'status': status.HTTP_200_OK
-        }, status=status.HTTP_200_OK)
+        return Response(serializer.data)

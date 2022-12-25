@@ -11,22 +11,14 @@ class NewsListAPIView(APIView):
     def get(self, request, *args, **kwargs):
         queryset = NewsService.filter()
         serializer = NewsListSerializer(queryset, many=True)
-        return Response(data={
-            'message': "List of the news",
-            'data': serializer.data,
-            'status': status.HTTP_200_OK
-        }, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
 
 class NewsAPIView(APIView):
     def get(self, *args, **kwargs):
         queryset = NewsService.get(id=kwargs.get('pk'))
         serializer = NewsListSerializer(queryset, many=False)
-        return Response(data={
-            'message': "News",
-            'data': serializer.data,
-            'status': status.HTTP_200_OK
-        }, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
 
 class NotificationAPIView(APIView):
@@ -36,19 +28,11 @@ class NotificationAPIView(APIView):
         instance_slice = get_instance_slice(page=page, count=count)
         queryset = NotificationService.filter()[instance_slice]
         serializer = NotificationSerializer(queryset, many=True)
-        return Response(data={
-            'message': "List of the Notification",
-            'data': serializer.data,
-            'status': status.HTTP_200_OK
-        }, status=status.HTTP_200_OK)
+        return Response(serializer.data)
 
 
 class NotificationDetailAPIView(APIView):
     def get(self, *args, **kwargs):
         queryset = NotificationService.get(id=kwargs.get('pk'))
         serializer = NotificationSerializer(queryset, many=False)
-        return Response(data={
-            'message': "Notification",
-            'data': serializer.data,
-            'status': status.HTTP_200_OK
-        }, status=status.HTTP_200_OK)
+        return Response(serializer.data)

@@ -15,7 +15,7 @@ class NewsListSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super(NewsListSerializer, self).to_representation(instance)
-        return {"News": data}
+        return data
 
 
 class NotificationSerializer(serializers.ModelSerializer):
