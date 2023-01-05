@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/about_us/', include('aboutUs.urls')),
     path('api/news/',  include('news.urls')),
     path('api/files/',  include('files.urls')),
+    path('api/users/', include('users.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns.extend(i18n_patterns(*i18n_urls, prefix_default_language=False))
 urlpatterns.extend(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
