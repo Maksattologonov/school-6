@@ -15,18 +15,20 @@ class Schedule(models.Model):
 
 
 class ScheduleFiles(models.Model):
-    schedule_id = models.ForeignKey(Schedule, models.SET_NULL, related_name="schedule_files", blank=True, null=True,)
+    schedule_id = models.ForeignKey(Schedule, models.CASCADE, related_name="schedule_files", blank=True, null=True, )
     file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Файл жүктөө"), null=True)
 
     class Meta:
         db_table = 'schedule_files'
+
+    def __str__(self):
+        return self.schedule_id.class_no
 
 
 class Gallery(models.Model):
     title = models.CharField(max_length=255, verbose_name=_("Сүрөттүн тематикасы"))
 
     class Meta:
-        db_table = 'gallery'
         verbose_name = _('Сүрөт')
         verbose_name_plural = _('Галлерея')
 
@@ -35,7 +37,7 @@ class Gallery(models.Model):
 
 
 class GalleryFiles(models.Model):
-    gallery_id = models.ForeignKey(Gallery, models.SET_NULL, related_name="gallery_files", blank=True, null=True,)
+    gallery_id = models.ForeignKey(Gallery, models.SET_NULL, related_name="gallery_files", blank=True, null=True, )
     file = models.ImageField(upload_to='files/%Y/%m', verbose_name=_("Сүрөт жүктөө"), null=True)
 
     class Meta:
@@ -44,8 +46,8 @@ class GalleryFiles(models.Model):
 
 class Accreditation(models.Model):
     types = [
-    ('1', 'Программалык'),
-    ('2', 'Институтционалдык')]
+        ('1', 'Программалык'),
+        ('2', 'Институтционалдык')]
     title = models.CharField(max_length=255, verbose_name=_("Аккредитация документтери"))
     file_type = models.CharField(choices=types, verbose_name=_("Документтин түрү"), max_length=30)
     file = models.FileField(upload_to='files/%Y/%m', verbose_name=_("Файл жүктөө"), null=True)

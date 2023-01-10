@@ -24,13 +24,13 @@ i18n_urls = (
 )
 
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/about_us/', include('aboutUs.urls')),
     path('api/news/',  include('news.urls')),
     path('api/files/',  include('files.urls')),
-    path('api/users/', include('users.urls'))
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('api/users/', include('users.urls', namespace='auth')),
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns.extend(i18n_patterns(*i18n_urls, prefix_default_language=False))
 urlpatterns.extend(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
 

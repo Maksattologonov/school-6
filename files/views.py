@@ -1,4 +1,5 @@
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from common.utils import get_instance_slice
@@ -8,6 +9,8 @@ from files.services import FilesService, AccreditationService, SliderService
 
 
 class GalleryListAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, request, *args, **kwargs):
         queryset = FilesService.filter_gallery()
         serializer = GallerySerializer(queryset, many=True)
@@ -15,6 +18,8 @@ class GalleryListAPIView(APIView):
 
 
 class GalleryAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, *args, **kwargs):
         queryset = FilesService.get_gallery(id=kwargs.get('pk'))
         serializer = GallerySerializer(queryset, many=False)
@@ -22,6 +27,8 @@ class GalleryAPIView(APIView):
 
 
 class GalleryTitleAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, *args, **kwargs):
         queryset = FilesService.get_gallery_titles()
         print(queryset)
@@ -30,6 +37,8 @@ class GalleryTitleAPIView(APIView):
 
 
 class ScheduleListAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, request, *args, **kwargs):
         queryset = FilesService.filter_schedule()
         serializer = ScheduleSerializer(queryset, many=True)
@@ -37,6 +46,8 @@ class ScheduleListAPIView(APIView):
 
 
 class ScheduleAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, *args, **kwargs):
         queryset = FilesService.get_schedule(id=kwargs.get('pk'))
         serializer = ScheduleSerializer(queryset, many=False)
@@ -44,6 +55,8 @@ class ScheduleAPIView(APIView):
 
 
 class ScheduleTitleAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, *args, **kwargs):
         queryset = FilesService.get_schedule_titles()
         serializer = TitleSerializer(queryset, many=True)
@@ -51,6 +64,8 @@ class ScheduleTitleAPIView(APIView):
 
 
 class AccreditationListAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, request, *args, **kwargs):
         queryset = AccreditationService.filter()
         serializer = AccreditationSerializer(queryset, many=True)
@@ -58,6 +73,8 @@ class AccreditationListAPIView(APIView):
 
 
 class AccreditationAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, *args, **kwargs):
         queryset = AccreditationService.filter(id=kwargs.get('pk'))
         serializer = AccreditationSerializer(queryset, many=False)
@@ -65,6 +82,8 @@ class AccreditationAPIView(APIView):
 
 
 class SliderListAPIView(APIView):
+    permission_classes = [IsAuthenticated, ]
+
     def get(self, request, *args, **kwargs):
         queryset = SliderService.filter()
         serializer = SliderSerializer(queryset, many=True)

@@ -1,5 +1,5 @@
 from common.exceptions import ObjectNotFoundException
-from users.manager import CustomUser
+from users.models import CustomUser
 
 
 class UserService:
