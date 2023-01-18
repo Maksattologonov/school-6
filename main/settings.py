@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'news',
     'files',
     'aboutUs',
+    'forum',
     "corsheaders",
     'drf_yasg',
 ]
@@ -147,7 +148,7 @@ LANGUAGE_CODE = 'ky'
 gettext = lambda s: s
 LANGUAGES = (
     ('ky', gettext('Kyrgyz')),
-    ('ru', gettext('Russian')),
+    ('en', gettext('English')),
 )
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ky'

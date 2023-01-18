@@ -4,11 +4,11 @@ from modeltranslation.admin import TranslationAdmin
 from files.models import Schedule, ScheduleFiles, Gallery, GalleryFiles, Accreditation, Slider
 
 
-class GalleryFilesAdmin(TranslationAdmin):
-    pass
-
-
-admin.site.register(Gallery, GalleryFilesAdmin)
+# class GalleryFilesAdmin(TranslationAdmin):
+#     pass
+#
+#
+# admin.site.register(Gallery, GalleryFilesAdmin)
 
 
 # class ScheduleFilesAdmin(TranslationAdmin):
